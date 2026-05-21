@@ -1,11 +1,1611 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; URL='home.html'">
-    <title>Redirecting...</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chunyang Wang — Financial planning, data, AI</title>
+<meta name="description" content="Chunyang Wang. Financial planning, data, AI. Paris." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,300;1,6..72,400;1,6..72,500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="image-slot.js"></script>
+<style>
+  :root {
+    /* Light palette — soft neutral over which color orbs sit */
+    --bg-base: #f4f4f3;
+    --bg-deep: #ececea;
+    --ink: #0a0a0a;
+    --ink-2: #2a2a2a;
+    --ink-dim: rgba(10, 10, 10, 0.56);
+    --ink-faint: rgba(10, 10, 10, 0.28);
+
+    /* Glass tokens */
+    --glass-bg: rgba(255, 255, 255, 0.42);
+    --glass-bg-strong: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.65);
+    --glass-edge: rgba(10, 10, 10, 0.06);
+    --glass-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 0 0 1px rgba(10,10,10,0.04), 0 24px 48px -24px rgba(10,10,10,0.18), 0 8px 24px -12px rgba(10,10,10,0.1);
+
+    /* Orb colors — soft blue / pink / green */
+    --orb-1: #c7d8ff; /* soft blue */
+    --orb-2: #ffd0e0; /* soft pink */
+    --orb-3: #c8efd1; /* soft mint */
+    --orb-4: #b8e2ff; /* sky blue */
+
+    --sans: "Newsreader", "Source Serif Pro", "Iowan Old Style", Georgia, serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --container: 1280px;
+    --gutter: clamp(20px, 4vw, 48px);
+    --nav-h: 64px;
+    --radius: 22px;
+    --radius-sm: 14px;
+    --radius-pill: 999px;
+
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    --bg-base: #0a0a0c;
+    --bg-deep: #050507;
+    --ink: #f4f4f3;
+    --ink-2: #d4d4d2;
+    --ink-dim: rgba(244, 244, 243, 0.6);
+    --ink-faint: rgba(244, 244, 243, 0.28);
+
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-bg-strong: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-edge: rgba(255, 255, 255, 0.05);
+    --glass-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 0 0 1px rgba(255,255,255,0.04), 0 24px 48px -24px rgba(0,0,0,0.6), 0 8px 24px -12px rgba(0,0,0,0.5);
+
+    --orb-1: #2d4a7a;
+    --orb-2: #6a2a4a;
+    --orb-3: #2a5a3a;
+    --orb-4: #2a4a7a;
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --bg-base: #0a0a0c;
+      --bg-deep: #050507;
+      --ink: #f4f4f3;
+      --ink-2: #d4d4d2;
+      --ink-dim: rgba(244, 244, 243, 0.6);
+      --ink-faint: rgba(244, 244, 243, 0.28);
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-bg-strong: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.14);
+      --glass-edge: rgba(255, 255, 255, 0.05);
+      --glass-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 0 0 1px rgba(255,255,255,0.04), 0 24px 48px -24px rgba(0,0,0,0.6), 0 8px 24px -12px rgba(0,0,0,0.5);
+      --orb-1: #2d4a7a; --orb-2: #6a2a4a; --orb-3: #2a5a3a; --orb-4: #2a4a7a;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    background: var(--bg-base);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 19px;
+    line-height: 1.65;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    letter-spacing: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    font-optical-sizing: auto;
+  }
+  ::selection { background: var(--ink); color: var(--bg-base); }
+
+  /* === Background scenery for glass to refract === */
+  .bg-scene {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 12% 8%, #d3f0d8 0%, rgba(211,240,216,0) 44%),
+      radial-gradient(circle at 88% 14%, #c9defb 0%, rgba(201,222,251,0) 46%),
+      radial-gradient(circle at 78% 88%, #ffd4e3 0%, rgba(255,212,227,0) 46%),
+      radial-gradient(circle at 22% 78%, #e2d6f5 0%, rgba(226,214,245,0) 44%),
+      linear-gradient(180deg, #fbf6f4 0%, #fdfbf8 55%, #f6f9f5 100%);
+  }
+  :root[data-theme="dark"] .bg-scene {
+    background:
+      radial-gradient(circle at 12% 8%, #14302a 0%, rgba(20,48,42,0) 44%),
+      radial-gradient(circle at 88% 14%, #14233a 0%, rgba(20,35,58,0) 46%),
+      radial-gradient(circle at 78% 88%, #2a1828 0%, rgba(42,24,40,0) 46%),
+      radial-gradient(circle at 22% 78%, #1c1830 0%, rgba(28,24,48,0) 44%),
+      linear-gradient(180deg, #0a0a0c 0%, #07080a 55%, #08100c 100%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .bg-scene {
+      background:
+        radial-gradient(circle at 12% 8%, #14302a 0%, rgba(20,48,42,0) 44%),
+        radial-gradient(circle at 88% 14%, #14233a 0%, rgba(20,35,58,0) 46%),
+        radial-gradient(circle at 78% 88%, #2a1828 0%, rgba(42,24,40,0) 46%),
+        radial-gradient(circle at 22% 78%, #1c1830 0%, rgba(28,24,48,0) 44%),
+        linear-gradient(180deg, #0a0a0c 0%, #07080a 55%, #08100c 100%);
+    }
+  }
+  .bg-grain {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  :root[data-theme="dark"] .bg-grain { mix-blend-mode: screen; opacity: 0.2; background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .bg-grain { mix-blend-mode: screen; opacity: 0.2; background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px); }
+  }
+
+  /* Faint concentric circle outlines, gently drifting */
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.55);
+    pointer-events: none;
+    will-change: transform;
+    animation: ringDrift 40s ease-in-out infinite;
+  }
+  :root[data-theme="dark"] .ring { border-color: rgba(255,255,255,0.06); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .ring { border-color: rgba(255,255,255,0.06); }
+  }
+  .ring.r1 { width: 720px; height: 720px; top: -180px; left: -140px; animation-delay: -3s; }
+  .ring.r2 { width: 980px; height: 980px; top: -220px; right: -260px; animation-delay: -12s; animation-duration: 48s; }
+  .ring.r3 { width: 1100px; height: 1100px; bottom: -360px; left: 8%; animation-delay: -22s; animation-duration: 54s; }
+  .ring.r4 { width: 540px; height: 540px; top: 38%; right: 12%; opacity: 0.7; animation-delay: -18s; animation-duration: 44s; }
+
+  @keyframes ringDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(24px, -18px) scale(1.03); }
+  }
+
+  /* === Glass primitive === */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius);
+  }
+  .glass-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(36px) saturate(200%);
+    -webkit-backdrop-filter: blur(36px) saturate(200%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius);
+  }
+
+  /* === Skip link === */
+  .skip {
+    position: absolute;
+    left: 50%; top: 8px;
+    transform: translate(-50%, -120%);
+    font-family: var(--mono);
+    font-size: 11px;
+    background: var(--ink);
+    color: var(--bg-base);
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    z-index: 100;
+    transition: transform 160ms ease;
+  }
+  .skip:focus { transform: translate(-50%, 0); }
+
+  /* === Nav === */
+  .nav-wrap {
+    position: fixed;
+    top: 16px; left: 0; right: 0;
+    z-index: 50;
+    padding: 0 var(--gutter);
+    pointer-events: none;
+  }
+  .nav {
+    max-width: var(--container);
+    margin: 0 auto;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 0 20px;
+    pointer-events: auto;
+    border-radius: var(--radius-pill);
+  }
+  .nav-mark {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-mark::before {
+    content: "";
+    display: inline-block;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg, var(--orb-1), var(--orb-2), var(--orb-4), var(--orb-3), var(--orb-1));
+    box-shadow: 0 0 0 1px var(--glass-edge), inset 0 0 8px rgba(255,255,255,0.5);
+  }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .nav-link {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    padding: 9px 14px;
+    border-radius: var(--radius-pill);
+    transition: background-color 200ms ease, color 200ms ease;
+    position: relative;
+  }
+  .nav-link:hover { background: var(--glass-bg); color: var(--ink); }
+  .nav-link[aria-current="true"] {
+    background: var(--glass-bg-strong);
+    color: var(--ink);
+    box-shadow: inset 0 0 0 1px var(--glass-border);
+  }
+  .nav-theme, .nav-toggle {
+    appearance: none;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    height: 40px; min-width: 40px;
+    padding: 0 12px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 200ms ease, transform 160ms ease;
+  }
+  .nav-theme:hover, .nav-toggle:hover { background: var(--glass-bg-strong); }
+  .nav-theme svg { width: 16px; height: 16px; }
+  .nav-theme .sun { display: none; }
+  :root[data-theme="dark"] .nav-theme .sun { display: block; }
+  :root[data-theme="dark"] .nav-theme .moon { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .nav-theme .sun { display: block; }
+    :root:not([data-theme]) .nav-theme .moon { display: none; }
+  }
+  .nav-toggle { display: none; }
+
+  a, button {
+    color: inherit; text-decoration: none;
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* === Mobile overlay menu === */
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    padding: 80px var(--gutter) 40px;
+  }
+  .menu::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    z-index: -1;
+  }
+  .menu.is-open { display: flex; }
+  .menu-close {
+    position: absolute; top: 24px; right: var(--gutter);
+  }
+  .menu-link {
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    padding: 8px 0;
+  }
+  .menu-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+
+  /* === Layout === */
+  main {
+    padding: calc(var(--nav-h) + 48px) var(--gutter) 0;
+  }
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+  section {
+    padding: clamp(80px, 10vw, 128px) 0;
+    scroll-margin-top: 100px;
+  }
+
+  /* Section eyebrow */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-dim);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    margin-bottom: 28px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  /* === Typography === */
+  h1, h2, h3 { font-family: var(--sans); font-weight: 500; margin: 0; color: var(--ink); font-optical-sizing: auto; }
+  h1 {
+    font-size: clamp(52px, 6.2vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: clamp(30px, 3.2vw, 46px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  h3 {
+    font-size: clamp(24px, 2.4vw, 32px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+  }
+  p { margin: 0; }
+  .lead {
+    font-size: clamp(19px, 1.6vw, 24px);
+    line-height: 1.55;
+    color: var(--ink-2);
+    letter-spacing: 0;
+    max-width: 60ch;
+  }
+  .mono {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .dim { color: var(--ink-dim); }
+
+  /* === HERO === */
+  .hero {
+    padding-top: clamp(24px, 4vw, 56px);
+    padding-bottom: clamp(56px, 7vw, 96px);
+  }
+  .hero-card {
+    padding: clamp(24px, 4vw, 48px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 28px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .portrait {
+    width: clamp(140px, 18vw, 200px);
+    height: clamp(140px, 18vw, 200px);
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--glass-bg-strong);
+    position: relative;
+    isolation: isolate;
+    box-shadow:
+      0 1px 1px rgba(255,255,255,0.9) inset,
+      0 0 0 1px rgba(10,10,10,0.06),
+      0 18px 28px -10px rgba(10,10,10,0.22),
+      0 40px 60px -20px rgba(10,10,10,0.15),
+      0 80px 90px -40px rgba(10,10,10,0.1);
+  }
+  .portrait::before {
+    /* Soft outer halo */
+    content: "";
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 62%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .portrait::after {
+    /* Glassy gloss + ground shading on top of the image */
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+      radial-gradient(circle at 28% 18%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 38%),
+      radial-gradient(circle at 75% 90%, rgba(10,10,10,0.22) 0%, rgba(10,10,10,0) 48%);
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 2;
+  }
+  :root[data-theme="dark"] .portrait {
+    box-shadow:
+      0 1px 1px rgba(255,255,255,0.1) inset,
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 18px 28px -10px rgba(0,0,0,0.6),
+      0 40px 60px -20px rgba(0,0,0,0.5),
+      0 80px 90px -40px rgba(0,0,0,0.4);
+  }
+  :root[data-theme="dark"] .portrait::before {
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 62%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .portrait {
+      box-shadow:
+        0 1px 1px rgba(255,255,255,0.1) inset,
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 18px 28px -10px rgba(0,0,0,0.6),
+        0 40px 60px -20px rgba(0,0,0,0.5),
+        0 80px 90px -40px rgba(0,0,0,0.4);
+    }
+    :root:not([data-theme]) .portrait::before {
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 62%);
+    }
+  }
+  .portrait image-slot {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    --is-bg: transparent; --is-border: transparent; --is-fg: var(--ink-dim);
+  }
+
+  .hero-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero h1 {
+    font-weight: 500;
+  }
+  .hero-role {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero-tagline {
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 44ch;
+    text-wrap: pretty;
+  }
+  .hero-tagline em { font-style: italic; color: var(--ink); }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 4px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 13px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-2);
+  }
+  .chip .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #16a34a;
+    box-shadow: 0 0 8px #16a34a;
+  }
+
+  /* === WORK === */
+  .work-header {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+    max-width: 720px;
+  }
+  .project {
+    padding: clamp(24px, 3vw, 36px);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .project p.desc {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-2);
+  }
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink);
+    letter-spacing: 0;
+    transition: background-color 200ms ease, transform 160ms ease, border-color 200ms ease;
+    line-height: 1;
+  }
+  .project-link:hover {
+    background: var(--ink);
+    color: var(--bg-base);
+    border-color: var(--ink);
+    transform: translateY(-1px);
+  }
+  .project-link .lk-host { font-weight: 500; }
+  .project-link .lk-path { color: var(--ink-dim); transition: color 200ms ease; }
+  .project-link:hover .lk-path { color: rgba(255,255,255,0.7); }
+  :root[data-theme="dark"] .project-link:hover { background: var(--ink); color: var(--bg-base); }
+  .project-link .lk-arrow {
+    transition: transform 200ms ease;
+    margin-left: 2px;
+  }
+  .project-link:hover .lk-arrow {
+    transform: translate(2px, -2px);
+  }
+  .project-shot {
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+  }
+  .project-shot image-slot {
+    width: 100%; height: 100%;
+    --is-bg: transparent; --is-border: transparent; --is-fg: var(--ink-dim);
+  }
+  .project-body { display: flex; flex-direction: column; gap: 20px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-edge);
+    color: var(--ink-2);
+  }
+  /* === PROJECT MOCK (custom Wealthpath visual) === */
+  .project-mock {
+    --mock-ink: #2a4a32;
+    --mock-line-1: #486a3a;
+    --mock-line-1-area: rgba(72, 106, 58, 0.18);
+    --mock-line-2: #a8c98c;
+    --mock-line-2-area: rgba(168, 201, 140, 0.32);
+    --mock-grid: rgba(74, 90, 60, 0.16);
+    --mock-card: rgba(255, 255, 255, 0.6);
+    --mock-card-edge: rgba(255, 255, 255, 0.85);
+    --mock-axis: rgba(74, 90, 60, 0.55);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+  :root[data-theme="dark"] .project-mock {
+    --mock-ink: #c8efd1;
+    --mock-line-1: #8fc170;
+    --mock-line-1-area: rgba(143, 193, 112, 0.2);
+    --mock-line-2: #506a3e;
+    --mock-line-2-area: rgba(80, 106, 62, 0.4);
+    --mock-grid: rgba(200, 239, 209, 0.16);
+    --mock-card: rgba(255, 255, 255, 0.06);
+    --mock-card-edge: rgba(255, 255, 255, 0.14);
+    --mock-axis: rgba(200, 239, 209, 0.6);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .project-mock {
+      --mock-ink: #c8efd1;
+      --mock-line-1: #8fc170;
+      --mock-line-1-area: rgba(143, 193, 112, 0.2);
+      --mock-line-2: #506a3e;
+      --mock-line-2-area: rgba(80, 106, 62, 0.4);
+      --mock-grid: rgba(200, 239, 209, 0.16);
+      --mock-card: rgba(255, 255, 255, 0.06);
+      --mock-card-edge: rgba(255, 255, 255, 0.14);
+      --mock-axis: rgba(200, 239, 209, 0.6);
+    }
+  }
+
+  .mock-card {
+    background: var(--mock-card);
+    border: 1px solid var(--mock-card-edge);
+    border-radius: 12px;
+    padding: 12px;
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+  }
+  .mock-main { padding: 14px; }
+  .mock-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  @media (max-width: 720px) {
+    .mock-row { grid-template-columns: 1fr; }
+  }
+
+  .mock-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .mock-title {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mock-ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .mock-sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--mock-axis);
+    margin-top: 2px;
+  }
+  .horizon {
+    display: flex;
+    gap: 1px;
+    padding: 1px;
+    background: rgba(74, 90, 60, 0.08);
+    border-radius: var(--radius-pill);
+  }
+  :root[data-theme="dark"] .horizon { background: rgba(200, 239, 209, 0.06); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .horizon { background: rgba(200, 239, 209, 0.06); }
+  }
+  .horizon span {
+    font-family: var(--mono);
+    font-size: 8px;
+    padding: 2px 6px;
+    border-radius: var(--radius-pill);
+    color: var(--mock-axis);
+  }
+  .horizon .on {
+    background: var(--mock-line-1);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .mock-stat {
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--mock-card-edge);
+    border-radius: 6px;
+    padding: 5px 7px;
+  }
+  :root[data-theme="dark"] .mock-stat { background: rgba(255,255,255,0.04); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .mock-stat { background: rgba(255,255,255,0.04); }
+  }
+  .mock-stat .k {
+    display: block;
+    font-family: var(--mono);
+    font-size: 7px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mock-axis);
+    margin-bottom: 2px;
+  }
+  .mock-stat .v {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--mock-ink);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .mock-stat .v.dim { color: var(--mock-axis); font-weight: 400; }
+  .mock-stat .v.up { color: var(--mock-line-1); }
+
+  .chart-svg { width: 100%; height: auto; display: block; }
+  .grid-line { stroke: var(--mock-grid); stroke-dasharray: 2 4; stroke-width: 1; }
+  .axis-text { font-family: "Geist Mono", monospace; font-size: 7px; fill: var(--mock-axis); }
+  .line-1 { stroke: var(--mock-line-1); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .line-2 { stroke: var(--mock-line-2); stroke-width: 1.3; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 3 3; }
+  .area-1 { fill: var(--mock-line-1-area); }
+  .area-2 { fill: var(--mock-line-2-area); }
+
+  .mock-legend {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .mock-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--mock-axis);
+  }
+  .mock-legend i {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--mock-line-1);
+  }
+  .mock-legend .dot-2 i { background: var(--mock-line-2); }
+  .mock-legend .dot-3 i { background: #d5e6c0; }
+
+  /* Donut */
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .donut {
+    width: 54px; height: 54px;
+    flex-shrink: 0;
+  }
+  .donut-legend {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+  .donut-legend .row {
+    display: grid;
+    grid-template-columns: 6px 1fr auto;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--mock-axis);
+  }
+  .donut-legend .row .swatch {
+    width: 5px; height: 5px; border-radius: 50%;
+  }
+  .donut-legend .row .name {
+    color: var(--mock-ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .donut-legend .row .pct { color: var(--mock-line-1); font-weight: 500; }
+  .outcomes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .outcome {
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-edge);
+  }
+  .outcome .v {
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .outcome .v .u { font-size: 14px; color: var(--ink-dim); margin-left: 2px; font-weight: 400; }
+  .outcome .l {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-dim);
+    margin-top: 10px;
+  }
+
+  @media (min-width: 900px) {
+    .project { grid-template-columns: 1.15fr 1fr; align-items: stretch; gap: 36px; }
+  }
+
+  /* === STORY === */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .story-essay {
+    padding: clamp(28px, 3.4vw, 48px);
+  }
+  .story-essay h2 { margin-bottom: 24px; }
+  .essay-body {
+    column-count: 1;
+    column-gap: 44px;
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .essay-body p + p { margin-top: 1.15em; }
+  .essay-body p:first-child::first-letter {
+    font-size: 1em;
+    font-weight: inherit;
+    float: none;
+    line-height: inherit;
+    padding: 0;
+    color: inherit;
+    letter-spacing: inherit;
+  }
+  .essay-body .lede {
+    font-size: clamp(20px, 1.8vw, 26px);
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 1.5em !important;
+    text-wrap: balance;
+  }
+  .essay-body .lede em { font-style: italic; }
+  .story-side { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 100px; }
+  .side-card { padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .side-card .k { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); }
+  .side-card .v { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+
+  @media (min-width: 1000px) {
+    .story-grid { grid-template-columns: 1.7fr 1fr; gap: 36px; }
+  }
+
+  /* === EXPERIENCE === */
+  .xp-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .xp-block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+  .xp-list {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .xp-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 20px;
+    padding: 18px 20px;
+    border-radius: var(--radius-sm);
+    transition: background-color 200ms ease;
+  }
+  .xp-row:hover { background: var(--glass-bg); }
+  .xp-row + .xp-row { border-top: 1px solid var(--glass-edge); }
+  .xp-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .xp-main .role { font-size: 17px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; }
+  .xp-main .org {
+    font-family: var(--sans);
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: var(--ink-2);
+    margin-top: 1px;
+    font-style: italic;
+  }
+  .xp-main .org .loc {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-left: 6px;
+  }
+  .xp-main .summary {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin-top: 4px;
+    text-wrap: pretty;
+  }
+  .xp-row .dates { font-family: var(--mono); font-size: 12px; color: var(--ink-dim); white-space: nowrap; padding-top: 6px; }
+  @media (max-width: 720px) {
+    .xp-row { grid-template-columns: 1fr; gap: 8px; padding: 16px; }
+    .xp-row .dates { padding-top: 0; }
+  }
+
+  /* Skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    padding: 8px;
+  }
+  @media (max-width: 720px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+  .skill-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 20px;
+    border-radius: var(--radius-sm);
+    transition: background-color 200ms ease;
+  }
+  .skill-cell:hover { background: var(--glass-bg); }
+  .skill-cell .k {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .skill-cell .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .skill-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-2);
+    letter-spacing: 0;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .skill-chip:hover { background: var(--ink); color: var(--bg-base); border-color: var(--ink); }
+
+  /* === CONTACT === */
+  .contact-card {
+    padding: clamp(32px, 4vw, 64px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .contact-card .lead { text-align: center; }
+  .email-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px 14px 18px;
+    border-radius: var(--radius-pill);
+    background: var(--ink);
+    color: var(--bg-base);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    box-shadow: 0 8px 24px -8px rgba(10,10,10,0.4);
+  }
+  .email-btn:hover { transform: translateY(-1px); box-shadow: 0 12px 32px -8px rgba(10,10,10,0.5); }
+  .email-btn .arrow { width: 16px; height: 16px; }
+  .contact-cta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 20px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: background-color 200ms ease, color 200ms ease, transform 160ms ease;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+  }
+  .cv-btn:hover { background: var(--ink); color: var(--bg-base); transform: translateY(-1px); }
+  .socials { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .social {
+    padding: 10px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-2);
+    transition: background-color 200ms ease;
+  }
+  .social:hover { background: var(--glass-bg-strong); color: var(--ink); }
+
+  footer {
+    text-align: center;
+    padding: 56px var(--gutter) 56px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  /* === Mobile === */
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: inline-flex; }
+    .stat-row { grid-template-columns: repeat(3, 1fr); padding: 16px; }
+    .stat .v { font-size: 22px; }
+    .outcomes { grid-template-columns: 1fr; }
+    .nav { padding: 0 8px 0 16px; }
+  }
+</style>
 </head>
 <body>
-    <p>Loading...</p>
+<a class="skip" href="#home">Skip to content</a>
+
+<div class="bg-scene" aria-hidden="true">
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="ring r3"></div>
+  <div class="ring r4"></div>
+  <div class="bg-grain"></div>
+</div>
+
+<div class="nav-wrap">
+  <header class="nav glass" id="nav" style="font-family: serif">
+    <a class="nav-mark" href="#home" aria-label="Home — Chunyang Wang" style="font-family: serif">Chunyang Wang</a>
+    <nav class="nav-links" aria-label="Primary" style="font-family: serif">
+      <a class="nav-link" href="#home" style="font-family: serif; font-size: 15px">Home</a>
+      <a class="nav-link" href="#work" style="font-family: serif; font-size: 15px">Project</a>
+      <a class="nav-link" href="#xp" style="font-family: serif; font-size: 15px">Experience</a>
+      <a class="nav-link" href="#story" style="font-family: serif; font-size: 15px">Story</a>
+      <a class="nav-link" href="#contact" style="font-family: serif; font-size: 15px">Contact</a>
+    </nav>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button class="nav-theme" type="button" id="themeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg class="moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12.5 9.5A5 5 0 1 1 6.5 3.5a4 4 0 0 0 6 6Z"/></svg>
+        <svg class="sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.4M8 13.1v1.4M1.5 8h1.4M13.1 8h1.4M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg>
+      </button>
+      <button class="nav-toggle" type="button" id="menuOpen" aria-controls="menu" aria-expanded="false">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 5h12M2 11h12"/></svg>
+        Menu
+      </button>
+    </div>
+  </header>
+</div>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-close nav-theme" type="button" id="menuClose" aria-label="Close menu">Close</button>
+  <a class="menu-link" href="#home"><span class="menu-num">01</span>Home</a>
+  <a class="menu-link" href="#work"><span class="menu-num">02</span>Work</a>
+  <a class="menu-link" href="#xp"><span class="menu-num">03</span>Experience</a>
+  <a class="menu-link" href="#story"><span class="menu-num">04</span>Story</a>
+  <a class="menu-link" href="#contact"><span class="menu-num">05</span>Contact</a>
+</div>
+
+<main style="font-size: 19px">
+  <div class="container">
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-card">
+        <div class="portrait">
+          <image-slot id="portrait" shape="circle" placeholder="Portrait"></image-slot>
+        </div>
+        <div class="hero-name">
+          <h1 style="font-family: serif; font-size: 80px">Chunyang Wang</h1>
+          <span class="hero-role" style="opacity: 0">&nbsp;</span>
+        </div>
+        <p class="hero-tagline" style="font-family: Newsreader"><em>FP&amp;A, reimagined through software</em> — automating the planning, sharpening the strategy.</p>
+        <div class="hero-meta">
+          <span class="chip"><span class="dot"></span>Open to conversations</span>
+          <span class="chip">Finance</span>
+          <span class="chip">Data</span>
+          <span class="chip">AI</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="work-header">
+        <span class="eyebrow">Project</span>
+        <h2>Wealthpath — A personal finance planning tool.</h2>
+        <p class="lead" style="font-family: serif">Models cash-flow trajectories and liquidity constraints across the full spectrum of French regulated savings products.</p>
+      </div>
+      <article class="project glass-strong">
+        <div class="project-mock" aria-label="Wealthpath product visual">
+          <!-- ============ BIG: CASH-FLOW PROJECTION ============ -->
+          <div class="mock-card mock-main">
+            <div class="mock-head">
+              <div>
+                <div class="mock-title">Cash-flow projection</div>
+                <span class="mock-sub">Wealthpath · simulation</span>
+              </div>
+              <div class="horizon" role="tablist" aria-label="Horizon">
+                <span>1 yr</span>
+                <span>2 yr</span>
+                <span class="on">3 yr</span>
+                <span>5 yr</span>
+                <span>10 yr</span>
+              </div>
+            </div>
+
+            <div class="stat-grid">
+              <div class="mock-stat">
+                <span class="k">Portfolio · 3 yr</span>
+                <span class="v up">€ 69,737</span>
+              </div>
+              <div class="mock-stat">
+                <span class="k">Without invest.</span>
+                <span class="v dim">€ 68,000</span>
+              </div>
+              <div class="mock-stat">
+                <span class="k">Interest earned</span>
+                <span class="v up">€ 1,737</span>
+              </div>
+              <div class="mock-stat">
+                <span class="k">Gain vs. cash</span>
+                <span class="v up">+2.6%</span>
+              </div>
+            </div>
+
+            <svg class="chart-svg" viewBox="0 0 720 170" preserveAspectRatio="none" aria-hidden="true">
+              <!-- Y axis labels + gridlines -->
+              <g>
+                <line class="grid-line" x1="60" y1="22"  x2="710" y2="22"/>
+                <line class="grid-line" x1="60" y1="60"  x2="710" y2="60"/>
+                <line class="grid-line" x1="60" y1="98"  x2="710" y2="98"/>
+                <line class="grid-line" x1="60" y1="135" x2="710" y2="135"/>
+                <text class="axis-text" x="52" y="24"  text-anchor="end">72.7k</text>
+                <text class="axis-text" x="52" y="62"  text-anchor="end">60.0k</text>
+                <text class="axis-text" x="52" y="100" text-anchor="end">53.5k</text>
+                <text class="axis-text" x="52" y="137" text-anchor="end">47.0k</text>
+              </g>
+
+              <!-- Area under "with investment" -->
+              <path class="area-1" d="M60,118 L170,105 L280,90 L390,75 L500,60 L610,42 L710,28 L710,150 L60,150 Z"/>
+              <!-- Lighter band between "with" and "without" -->
+              <path class="area-2" d="M60,120 L170,110 L280,98 L390,86 L500,75 L610,62 L710,52 L710,28 L610,42 L500,60 L390,75 L280,90 L170,105 L60,118 Z"/>
+
+              <!-- Lines -->
+              <polyline class="line-1" points="60,118 170,105 280,90 390,75 500,60 610,42 710,28"/>
+              <polyline class="line-2" points="60,120 170,110 280,98 390,86 500,75 610,62 710,52"/>
+
+              <!-- X axis labels -->
+              <g>
+                <text class="axis-text" x="60"  y="160">Now</text>
+                <text class="axis-text" x="280" y="160" text-anchor="middle">May '27</text>
+                <text class="axis-text" x="500" y="160" text-anchor="middle">May '28</text>
+                <text class="axis-text" x="710" y="160" text-anchor="end">May '29</text>
+              </g>
+            </svg>
+
+            <div class="mock-legend">
+              <span><i></i>With investment</span>
+              <span class="dot-2"><i></i>Without investment</span>
+            </div>
+          </div>
+
+          <!-- ============ ROW: DONUT + LIQUIDITY ============ -->
+          <div class="mock-row">
+
+            <!-- Allocation donut -->
+            <div class="mock-card">
+              <div class="mock-head" style="margin-bottom:14px;">
+                <div>
+                  <div class="mock-title">Allocation</div>
+                  <span class="mock-sub">9 products · € 50,000</span>
+                </div>
+              </div>
+              <div class="donut-wrap">
+                <svg class="donut" viewBox="0 0 42 42" aria-hidden="true">
+                  <!-- Each segment is a stroke-dasharray segment on a single circle, rotated to start at top -->
+                  <circle cx="21" cy="21" r="15.915" fill="none" stroke="rgba(74,90,60,0.06)" stroke-width="6"/>
+                  <g transform="rotate(-90 21 21)">
+                    <!-- Assurance-vie · fonds euros 42% -->
+                    <circle cx="21" cy="21" r="15.915" fill="none" stroke="#d5e6c0" stroke-width="6"
+                            stroke-dasharray="42 58" stroke-dashoffset="0"/>
+                    <!-- PEL 19% -->
+                    <circle cx="21" cy="21" r="15.915" fill="none" stroke="#5d7c3f" stroke-width="6"
+                            stroke-dasharray="19 81" stroke-dashoffset="-42"/>
+                    <!-- Livret A 17% -->
+                    <circle cx="21" cy="21" r="15.915" fill="none" stroke="#3d5a26" stroke-width="6"
+                            stroke-dasharray="17 83" stroke-dashoffset="-61"/>
+                    <!-- LEP 7% -->
+                    <circle cx="21" cy="21" r="15.915" fill="none" stroke="#bfd99c" stroke-width="6"
+                            stroke-dasharray="7 93" stroke-dashoffset="-78"/>
+                    <!-- PEA 6% -->
+                    <circle cx="21" cy="21" r="15.915" fill="none" stroke="#7a9c5a" stroke-width="6"
+                            stroke-dasharray="6 94" stroke-dashoffset="-85"/>
+                    <!-- LDDS 5% -->
+                    <circle cx="21" cy="21" r="15.915" fill="none" stroke="#a8c98c" stroke-width="6"
+                            stroke-dasharray="5 95" stroke-dashoffset="-91"/>
+                    <!-- Livret Jeune 2% -->
+                    <circle cx="21" cy="21" r="15.915" fill="none" stroke="#2a4a32" stroke-width="6"
+                            stroke-dasharray="2 98" stroke-dashoffset="-96"/>
+                    <!-- AV · UC 2% -->
+                    <circle cx="21" cy="21" r="15.915" fill="none" stroke="#94b876" stroke-width="6"
+                            stroke-dasharray="2 98" stroke-dashoffset="-98"/>
+                  </g>
+                </svg>
+                <div class="donut-legend">
+                  <div class="row"><span class="swatch" style="background:#d5e6c0"></span><span class="name">Assurance-vie €</span><span class="pct">42%</span></div>
+                  <div class="row"><span class="swatch" style="background:#5d7c3f"></span><span class="name">PEL</span><span class="pct">19%</span></div>
+                  <div class="row"><span class="swatch" style="background:#3d5a26"></span><span class="name">Livret A</span><span class="pct">17%</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Liquidity area -->
+            <div class="mock-card">
+              <div class="mock-head" style="margin-bottom:8px;">
+                <div>
+                  <div class="mock-title">Liquidity</div>
+                  <span class="mock-sub">€ 60.5k liquid · 9.2k blocked</span>
+                </div>
+              </div>
+              <svg class="chart-svg" viewBox="0 0 320 90" preserveAspectRatio="none" aria-hidden="true">
+                <!-- Blocked (lightest, top) -->
+                <path d="M0,12 L80,11 L160,10 L240,9 L320,8 L320,90 L0,90 Z" fill="#e6f0d4"/>
+                <!-- Semi (middle band) -->
+                <path d="M0,20 L80,22 L160,24 L240,22 L320,17 L320,90 L0,90 Z" fill="#bfd99c"/>
+                <!-- Liquid (deepest, animated dip in middle) -->
+                <path d="M0,38 L60,43 L120,55 L180,60 L220,57 L260,38 L320,32 L320,90 L0,90 Z" fill="#5d7c3f"/>
+              </svg>
+              <div class="mock-legend" style="margin-top:6px;">
+                <span><i style="background:#5d7c3f"></i>Liquid</span>
+                <span class="dot-2"><i style="background:#bfd99c"></i>Semi</span>
+                <span class="dot-3"><i></i>Blocked</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="tag-row">
+            <span class="tag">Vibe-coding</span>
+            <span class="tag">Financial planning</span>
+            <span class="tag">Banking</span>
+            <span class="tag">AI</span>
+            <span class="tag">Interactive</span>
+          </div>
+          <h3>Helping households see the road ahead.</h3>
+          <p class="desc">A planning engine that simulates years of monthly cash flow against the constraints of Livret A, LDDS, PEL, assurance-vie and the rest of the French regulated landscape — then translates the result into a single, legible page.</p>
+          <div class="project-links">
+            <a class="project-link" href="https://chunyangweb.github.io/wealthpath/" target="_blank" rel="noopener">
+              <span class="lk-host">chunyangweb.github.io</span>
+              <span class="lk-path">/wealthpath</span>
+              <svg class="lk-arrow" viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 10L10 4M5.5 4H10v4.5"/></svg>
+            </a>
+          </div>
+          <div class="outcomes">
+            <div class="outcome">
+              <div class="v">12</div>
+              <span class="l">PRODUCTS MODELLED</span>
+            </div>
+            <div class="outcome">
+              <div class="v">100<span class="u">%</span></div>
+              <span class="l">CLIENT-SIDE</span>
+            </div>
+            <div class="outcome">
+              <div class="v">10<span class="u">yr</span></div>
+              <span class="l">SIMULATION HORIZON</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="xp">
+      <div class="work-header">
+        <span class="eyebrow">Experience</span>
+        <h2>A short résumé.</h2>
+      </div>
+
+      <div class="xp-stack">
+        <!-- WORK -->
+        <div>
+          <div class="xp-block-label">Work</div>
+          <div class="xp-list glass">
+            <div class="xp-row">
+              <div class="xp-main">
+                <span class="role">Financial Controller — Intern</span>
+                <span class="org">StellaGroup <span class="loc">· Toulouse, FR</span></span>
+                <p class="summary">Built FIFO-based treasury monitoring in Power Query and modelled macroeconomic indicators to sharpen financial decision-making at group level.</p>
+              </div>
+              <span class="dates">04/2026 — Present</span>
+            </div>
+            <div class="xp-row">
+              <div class="xp-main">
+                <span class="role">FP&amp;A Analyst — Intern</span>
+                <span class="org">Collins Aerospace · RTX <span class="loc">· Toulouse, FR</span></span>
+                <p class="summary">Delivered Power BI dashboards, VBA-driven Excel automation, and an SSIS ETL pipeline to streamline budget tracking and real-time financial reporting.</p>
+              </div>
+              <span class="dates">04/2025 — 08/2025</span>
+            </div>
+            <div class="xp-row">
+              <div class="xp-main">
+                <span class="role">Senior Associate, DCM</span>
+                <span class="org">Guosen Securities <span class="loc">· Beijing, CN</span></span>
+                <p class="summary">Led 15 bond issuances totalling €1.7&nbsp;bn for 8 corporate clients — owning due diligence, documentation, and coordination across auditors, lawyers, and rating agencies.</p>
+              </div>
+              <span class="dates">01/2021 — 07/2022</span>
+            </div>
+            <div class="xp-row">
+              <div class="xp-main">
+                <span class="role">Digital Consultant — Intern</span>
+                <span class="org">Strategy As Ecology Consultancy <span class="loc">· London, UK</span></span>
+                <p class="summary">Drafted proposals for five ecology and agriculture projects and supported partner meetings from agenda to minutes.</p>
+              </div>
+              <span class="dates">06/2020 — 09/2020</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div>
+          <div class="xp-block-label">Education</div>
+          <div class="xp-list glass">
+            <div class="xp-row">
+              <div class="xp-main">
+                <span class="role">Toulouse School of Management</span>
+                <span class="org">M1 &amp; M2 · Finance and Information Technology</span>
+              </div>
+              <span class="dates">09/2024 — Present</span>
+            </div>
+            <div class="xp-row">
+              <div class="xp-main">
+                <span class="role">Université de Caen Normandie</span>
+                <span class="org">Diplôme Universitaire d'Études Françaises (B1 — C1)</span>
+              </div>
+              <span class="dates">01/2023 — 05/2024</span>
+            </div>
+            <div class="xp-row">
+              <div class="xp-main">
+                <span class="role">The University of Manchester</span>
+                <span class="org">MSc Financial Economics · Distinction</span>
+              </div>
+              <span class="dates">09/2019 — 09/2020</span>
+            </div>
+            <div class="xp-row">
+              <div class="xp-main">
+                <span class="role">Shandong University</span>
+                <span class="org">Bachelor of Finance</span>
+              </div>
+              <span class="dates">09/2015 — 06/2019</span>
+            </div>
+          </div>
+        </div>
+        <!-- SKILLS -->
+        <div>
+          <div class="xp-block-label">Competencies</div>
+          <div class="skills-grid glass">
+            <div class="skill-cell">
+              <span class="k">Data &amp; Code</span>
+              <div class="chips">
+                <span class="skill-chip">Python</span>
+                <span class="skill-chip">SQL</span>
+                <span class="skill-chip">R</span>
+                <span class="skill-chip">VBA</span>
+                <span class="skill-chip">Power BI</span>
+              </div>
+            </div>
+            <div class="skill-cell">
+              <span class="k">Business Systems</span>
+              <div class="chips">
+                <span class="skill-chip">SAP</span>
+                <span class="skill-chip">Diapason</span>
+                <span class="skill-chip">Microsoft 365</span>
+              </div>
+            </div>
+            <div class="skill-cell">
+              <span class="k">Market Data</span>
+              <div class="chips">
+                <span class="skill-chip">Bloomberg</span>
+                <span class="skill-chip">Refinitiv</span>
+              </div>
+            </div>
+            <div class="skill-cell">
+              <span class="k">Finance Methods</span>
+              <div class="chips">
+                <span class="skill-chip">Financial analysis</span>
+                <span class="skill-chip">Due diligence</span>
+                <span class="skill-chip">FP&amp;A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- STORY -->
+    <section id="story">
+      <span class="eyebrow">Story</span>
+      <h2 style="margin-bottom: 36px;">A thread across borders.</h2>
+      <div class="story-grid">
+        <article class="story-essay glass-strong">
+          <div class="essay-body">
+            <p class="lede"><em>I did not come to finance just to read numbers.<br/>I came to understand the stories behind them.</em></p>
+            <p>From China to the UK, then France, my path has moved across markets, cultures, and languages. Finance has been the thread — from financial markets to operational finance, from analysis to strategy — but curiosity has always been the force moving me forward.</p>
+            <p>I learned French from zero to a professional working level in less than two years.<br/>That journey taught me more than a language; it taught me how fast I can rebuild, adapt, and grow when nothing is yet familiar.</p>
+            <p>Today, I am learning a new language: the one between finance and technology.<br/>A language of data, automation, and AI — turning analysis into insight, and insight into smarter decisions.</p>
+            <p>Dynamic, resilient, and curious, I am not just building a finance career.<br/><strong>I am building the next version of it.</strong></p>
+          </div>
+        </article>
+        <aside class="story-side">
+          <div class="side-card glass">
+            <span class="k">READING</span>
+            <span class="v"><em>The Stories of Ibis</em><br/><span style="color:var(--ink-dim); font-size: 14px;">Hiroshi Yamamoto</span></span>
+          </div>
+          <div class="side-card glass">
+            <span class="k">MOVEMENT</span>
+            <span class="v">Swimming · Pilates</span>
+          </div>
+          <div class="side-card glass">
+            <span class="k">TINKERING</span>
+            <span class="v">Half prompt, half code</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card glass-strong">
+        <span class="eyebrow" style="margin-bottom:0;">Contact</span>
+        <h2>Chat with me.</h2>
+        <p class="lead">Looking to talk about financial planning, data, AI, or any quiet tool worth building — my inbox is open.</p>
+        <div class="contact-cta">
+          <a class="email-btn" href="mailto:wangchunyang.fr@gmail.com">
+            wangchunyang.fr@gmail.com
+            <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a class="cv-btn" href="https://drive.google.com/file/d/1hFe-IwMvqnBZfOguuaLTiNXIOmx6d2lF/view?usp=sharing" target="_blank" rel="noopener">
+            Download CV
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 2v9M4 7l4 4 4-4M3 13h10"/></svg>
+          </a>
+        </div>
+        <div class="socials">
+          <a class="social" href="https://www.linkedin.com/in/chunyang-wang-a30b00195/" target="_blank" rel="me noopener">LinkedIn</a>
+          <a class="social" href="https://github.com/chunyangweb" target="_blank" rel="me noopener">GitHub</a>
+          <a class="social" href="https://x.com/chunyanginx" target="_blank" rel="me noopener">X</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  © 2026 · Chunyang Wang
+</footer>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const stored = localStorage.getItem("cw-theme");
+  if (stored === "light" || stored === "dark") root.setAttribute("data-theme", stored);
+
+  function currentTheme() {
+    const attr = root.getAttribute("data-theme");
+    if (attr) return attr;
+    return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function setTheme(t) {
+    root.setAttribute("data-theme", t);
+    localStorage.setItem("cw-theme", t);
+    document.querySelectorAll("#themeToggle").forEach(b => b.setAttribute("aria-pressed", String(t === "dark")));
+  }
+  document.querySelectorAll("#themeToggle").forEach(btn => {
+    btn.addEventListener("click", () => setTheme(currentTheme() === "dark" ? "light" : "dark"));
+    btn.setAttribute("aria-pressed", String(currentTheme() === "dark"));
+  });
+
+  const menu = document.getElementById("menu");
+  const open = document.getElementById("menuOpen");
+  const close = document.getElementById("menuClose");
+  function openMenu() { menu.classList.add("is-open"); open.setAttribute("aria-expanded","true"); document.body.style.overflow="hidden"; }
+  function closeMenu() { menu.classList.remove("is-open"); open.setAttribute("aria-expanded","false"); document.body.style.overflow=""; }
+  open.addEventListener("click", openMenu);
+  close.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+
+  const sections = [...document.querySelectorAll("main section")];
+  const links = new Map([...document.querySelectorAll(".nav-link")].map(a => [a.getAttribute("href").slice(1), a]));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        const id = en.target.id;
+        links.forEach((a, k) => k === id ? a.setAttribute("aria-current","true") : a.removeAttribute("aria-current"));
+      }
+    });
+  }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
+  sections.forEach(s => io.observe(s));
+})();
+</script>
 </body>
 </html>
