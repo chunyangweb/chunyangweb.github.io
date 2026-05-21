@@ -33,9 +33,24 @@
 			box-sizing: inherit;
 		}
 
+	html,
 	body {
 
-		background-color: _palette(invert, bg);
+		background-color:		_palette(wrapper-bg);
+		background-image:		url('../../images/overlay.png'),	linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1)),	url('../../images/Background.png');
+		background-size:		auto,								auto,														100% auto;
+		background-position:	center,								center,														top center;
+		background-repeat:		repeat,								no-repeat,													no-repeat;
+		background-attachment:	fixed,								fixed,														fixed;
+
+		@include breakpoint('<=small') {
+			background-size:		auto,								auto,														cover;
+			background-position:	center,								center,														62% center;
+		}
+
+	}
+
+	body {
 
 		// Stops initial animations until page loads.
 			&.is-preload {

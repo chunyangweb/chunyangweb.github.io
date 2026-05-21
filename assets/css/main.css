@@ -98,9 +98,25 @@ input, select, textarea {
 		box-sizing: inherit;
 	}
 
+	html,
 	body {
-		background-color: #1e252d;
+		background-color: #212931;
+		background-image: url("../../images/overlay.png"), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../images/Background.png");
+		background-size: auto,								auto,														100% auto;
+		background-position: center,								center,														top center;
+		background-repeat: repeat,								no-repeat,													no-repeat;
+		background-attachment: fixed,								fixed,														fixed;
 	}
+
+		@media screen and (max-width: 736px) {
+
+			html,
+			body {
+				background-size: auto,								auto,														cover;
+				background-position: center,								center,														62% center;
+			}
+
+		}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
@@ -3276,7 +3292,18 @@ input, select, textarea {
 		@media screen and (orientation: portrait) {
 
 			#wrapper > .bg {
-				background-size: auto,								auto,														auto 175%;
+				background-size: auto,								auto,														cover;
+				background-position: center,								center,														62% center;
+			}
+
+		}
+
+		@media screen and (max-width: 736px) {
+
+			#wrapper > .bg {
+				background-size: auto,								auto,														cover;
+				background-position: center,								center,														62% center;
+				background-attachment: fixed,								fixed,														fixed;
 			}
 
 		}
