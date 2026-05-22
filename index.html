@@ -1118,6 +1118,30 @@
   @media (max-width: 760px) {
     .nav-links { display: none; }
     .nav-toggle { display: inline-flex; }
+    .menu {
+      align-items: stretch;
+      justify-content: center;
+      gap: 2px;
+      padding: 72px max(24px, var(--gutter)) 32px;
+    }
+    .menu-link {
+      font-size: clamp(24px, 7vw, 30px);
+      line-height: 1.12;
+      letter-spacing: 0;
+      padding: 10px 0;
+    }
+    .menu-num {
+      font-size: 11px;
+      margin-right: 10px;
+    }
+    .hero-card {
+      gap: 22px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 11vw, 50px) !important;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
     .stat-row { grid-template-columns: repeat(3, 1fr); padding: 16px; }
     .stat .v { font-size: 22px; }
     .outcomes { grid-template-columns: 1fr; }
@@ -1175,7 +1199,7 @@
     <section id="home" class="hero">
       <div class="hero-card">
         <div class="portrait">
-          <image-slot id="portrait" shape="circle" placeholder="Portrait" src="portrait.jpg"></image-slot>
+          <img src="portrait.jpg" alt="Chunyang Wang" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;" />
         </div>
         <div class="hero-name">
           <h1 style="font-family: serif; font-size: 80px">Chunyang Wang</h1>
