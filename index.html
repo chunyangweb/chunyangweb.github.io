@@ -1138,9 +1138,18 @@
       gap: 22px;
     }
     .hero h1 {
-      font-size: clamp(38px, 11vw, 50px) !important;
+      max-width: 100%;
+      font-size: clamp(32px, 9vw, 40px) !important;
       line-height: 1.05;
       letter-spacing: 0;
+    }
+    .hero-tagline {
+      max-width: 30ch;
+      font-size: 15px;
+    }
+    .hero-meta {
+      max-width: 100%;
+      justify-content: center;
     }
     .stat-row { grid-template-columns: repeat(3, 1fr); padding: 16px; }
     .stat .v { font-size: 22px; }
